@@ -2,7 +2,6 @@ from sys import prefix
 import boto3
 import os.path
 import chardet  # pip install chardet
-from chardet.universaldetector import UniversalDetector
 
 s3 = boto3.resource('s3')
 
@@ -15,7 +14,6 @@ newinboundUTF8Folder = 'newUTF8batch' # files missing in output folder will be c
 
 bucket_ref = s3.Bucket(CMbucket)
 
-detector = UniversalDetector()
 
 for obj in bucket_ref.objects.filter(Prefix = inboundFolder):
     if not obj.key.lower().endswith('.txt'):
